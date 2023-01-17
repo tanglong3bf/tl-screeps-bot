@@ -41,6 +41,10 @@ interface CreepMemory {
    * 已经领取的任务
    */
   taskId?: string
+  /**
+   * 是否是多房间爬
+   */
+  isRemote?: boolean
 }
 
 interface Creep {
@@ -217,7 +221,7 @@ interface StructureSpawn {
   /**
    * 将生成任务推入队列
    */
-  addTask(taskName: string, configName: string): number,
+  addTask(role: string, configName: string, isRemote?: boolean): number,
   /**
    * creep生成主要实现
    */
@@ -235,7 +239,11 @@ interface SpawnTask {
   /**
    * 配置
    */
-  configName: string
+  configName: string,
+  /**
+   * 是否是多房间
+   */
+  isRemote?: boolean
 }
 
 // ------------------------------ common -----------------------------

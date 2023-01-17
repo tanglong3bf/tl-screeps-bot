@@ -21,7 +21,7 @@ export const loop = errorMapper(() => {
     if(!Game.creeps[name]) {
       // 添加生成任务
       if (Memory.creeps[name].continue && !Memory.creeps[name].published) {
-        Game.spawns[Memory.creeps[name].spawn].addTask(Memory.creeps[name].role, Memory.creeps[name].configName);
+        Game.spawns[Memory.creeps[name].spawn].addTask(Memory.creeps[name].role, Memory.creeps[name].configName, Memory.creeps[name].isRemote ? true : false);
       }
 
       delete Memory.creeps[name];
@@ -61,9 +61,9 @@ export const loop = errorMapper(() => {
     // Game.rooms['W38N4'].terminal.send(RESOURCE_ZYNTHIUM, 1000, 'W35N2');
   // }
 
-  // 所有的Creep进行工作
+  // 所有的单房间Creep进行工作
   Object.values(Game.creeps)
-    .filter(creep => true)
+    .filter(creep => !creep.memory.isRemote)
     .forEach(creep => creep.work());
 
   // 所有的Tower进行工作
@@ -104,32 +104,3 @@ export const loop = errorMapper(() => {
     Game.cpu.generatePixel();
   }
 })
-
-/** TODO:
- *
- * 外矿可配置，房间名、外矿id，运回仓库
- *
- * 外矿开采效率还不满
- *
- * 添加元素矿采集爬
- *
- * 根据能量调整升级爬数量
- *
- * 删除掉没用的配置
- *
- * center爬转移逻辑
- *
- * 跨房间转移资源，也搞一个任务队列吧
- *
- * lab：也整一个任务配置吧，期望数量，材料不够就发物流任务，产物也发物流任务到仓库
- * 可以拆分任务，缺材料的话，log
- *
- * bodylist没必要记录需要的能量，临时凑合着用，以后改为根据bodylist自动计算需要的能量
- *
- * factory任务队列，如压bar
- *
- * lab切换合成状态和boost状态，在boost状态下
- *
- * 不同类型的爬抽离公共部分代码（不断优化）
- *
- */

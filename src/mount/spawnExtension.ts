@@ -21,9 +21,10 @@ export const spawnExtension = {
     /**
      * 将生成任务推入队列
      */
-    addTask: function(role: string, configName: string): number {
+    addTask: function(role: string, configName: string, isRemote?: boolean): number {
+      if (isRemote == undefined) isRemote = false;
         // 任务加入队列
-        this.memory.spawnList.push({role, configName});
+        this.memory.spawnList.push({role, configName, isRemote});
         return this.memory.spawnList.length
     },
     /**
@@ -46,7 +47,8 @@ export const spawnExtension = {
                     configName: task.configName,
                     continue: true,
                     readyTime: 0,
-                    spawn: this.name
+                    spawn: this.name,
+                    isRemote: task.isRemote
                 }
             }
         );
