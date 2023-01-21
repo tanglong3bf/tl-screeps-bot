@@ -34,7 +34,15 @@ export const creatCreepController = (roomName: string) => {
               }
             });
             if (creeps.length == 0) {
-              spawnExtension.addTask('harvester1', configName, false);
+              const spawns = Game.rooms[roomName].find(FIND_MY_SPAWNS)
+              if (spawns.length > 0) {
+                const flag = spawns[0].memory.spawnList.reduce((prev, current) => {
+                  return prev || current.configName == configName;
+                }, false);
+                if (flag) {
+                  spawns[0].addTask('harvester1', configName, false);
+                }
+              }
             }
           }
         }
