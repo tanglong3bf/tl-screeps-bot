@@ -1,55 +1,33 @@
-import {roomAutoConfig} from "@/config/roomAutoConfig";
 function uuid() {
-    var result = '';
-    var hexcodes = "0123456789abcdef".split("");
+  var result = '';
+  var hexcodes = "0123456789abcdef".split("");
 
-    for (var index = 0; index < 32; index++) {
-        var value = Math.floor(Math.random() * 16);
+  for (var index = 0; index < 32; index++) {
+    var value = Math.floor(Math.random() * 16);
 
-        switch (index) {
-        case 8:
-            result += '-';
-            break;
-        case 12:
-            value = 4;
-            result += '-';
-            break;
-        case 16:
-            value = value & 3 | 8;
-            result += '-';
-            break;
-        case 20:
-            result += '-';
-            break;
-        }
-        result += hexcodes[value];
+    switch (index) {
+      case 8:
+        result += '-';
+      break;
+      case 12:
+        value = 4;
+      result += '-';
+      break;
+      case 16:
+        value = value & 3 | 8;
+      result += '-';
+      break;
+      case 20:
+        result += '-';
+      break;
     }
-    return result;
+    result += hexcodes[value];
+  }
+  return result;
 };
 
 // 自定义的 Room 的拓展
 export const roomExtension = {
-  /**
-   * 为每一个房间补齐基础配置
-   * 现阶段只完成了
-   */
-  autoConfig: function (this: Room): void {
-
-    // 无主房或者不是我的房间，不做配置
-    if (this.find(FIND_MY_SPAWNS).length == 0) {
-      return;
-    }
-
-    roomAutoConfig.harvester1(this);
-    roomAutoConfig.harvester2(this);
-    roomAutoConfig.harvester3(this);
-    roomAutoConfig.builder(this);
-    roomAutoConfig.upgrader(this);
-    // roomAutoConfig.carrier(this);
-    roomAutoConfig.repairer(this);
-    roomAutoConfig.center(this);
-
-  },
   /**
    * 获取当前房间内所有存储能量的container
    */
@@ -143,13 +121,13 @@ export const roomExtension = {
       let structureId: Id<Structure>;
       switch (this.memory.taskList[0].type) {
         case 'fillTower':
-        case 'labIn':
-        case 'fillNuker':
+          case 'labIn':
+          case 'fillNuker':
           structureId = this.memory.taskList[0].to;
-          break;
+        break;
         case 'labOut':
           structureId = this.memory.taskList[0].from;
-          break;
+        break;
       }
       for (const id in this.memory.publishedTask) {
         if (id == structureId) {

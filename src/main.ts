@@ -7,6 +7,7 @@ import { spawnExtension } from "./mount/spawnExtension";
 import {remoteSourceApi} from "./global/remoteSourceApi";
 import {marketApi} from "./global/marketApi";
 import {creatLabController} from "./modules/labController";
+import {creatCreepController} from "./modules/creepController";
 
 global.remoteSourceApi = remoteSourceApi;
 global.marketApi = marketApi;
@@ -53,18 +54,25 @@ export const loop = errorMapper(() => {
 
   // 所有的Room进行工作
   for (const name in Game.rooms) {
-    Game.rooms[name].autoConfig();
+    // fillExtension和fillTower任务的发布
     Game.rooms[name].publishTransferTask();
+    // 自动配置和产爬
+    try {
+      const creepController = creatCreepController(name);
+      creepController.autoRun();
+    } catch (e) {
+      // console.log(e);
+    }
   }
 
   // if (Game.rooms['W38N4'].terminal.store[RESOURCE_ZYNTHIUM] >= 1000) {
-    // Game.rooms['W38N4'].terminal.send(RESOURCE_ZYNTHIUM, 1000, 'W35N2');
+  // Game.rooms['W38N4'].terminal.send(RESOURCE_ZYNTHIUM, 1000, 'W35N2');
   // }
 
   // 所有的单房间Creep进行工作
   Object.values(Game.creeps)
-    .filter(creep => !creep.memory.isRemote)
-    .forEach(creep => creep.work());
+  .filter(creep => !creep.memory.isRemote)
+  .forEach(creep => creep.work());
 
   // 所有的Tower进行工作
   for (const name in Game.rooms) {

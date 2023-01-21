@@ -144,11 +144,6 @@ interface Room {
    */
   addTransferTask(transferTask: TransferTask): void
 
-  /**
-   * 每个房间的自动配置
-   */
-  autoConfig(): void
-
   publishTransferTask(): void
 
   haveTask(): boolean
