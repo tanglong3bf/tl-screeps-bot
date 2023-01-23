@@ -3,7 +3,6 @@ import { roleBuilder } from "@/role/builder";
 import { roleCarrier } from "@/role/carrier";
 import { roleClaimer } from "@/role/remote/claimer";
 import { roleCenter } from "@/role/center";
-import { roleHarvester } from "@/role/harvester";
 import { roleRemoteAttacker } from "@/role/remote/attacker";
 import { roleRemoteBuilder } from "@/role/remote/builder";
 import { roleRemoteCarrier } from "@/role/remote/carrier";
@@ -13,6 +12,7 @@ import { roleUpgrader } from "@/role/upgrader";
 import {roleRemoteUpgrader} from "@/role/remote/upgrader";
 import {roleStealer} from "@/role/remote/stealer";
 import {roleHarvester1} from "@/role/harvester1";
+import {roleHarvester2} from "@/role/harvester2";
 
 const roles = {
   upgrader: roleUpgrader,
@@ -20,8 +20,8 @@ const roles = {
   center: roleCenter,
   carrier: roleCarrier,
   repairer: roleRepairer,
-  harvester: roleHarvester,
   harvester1: roleHarvester1,
+  harvester2: roleHarvester2,
   remoteHarvester: roleRemoteHarvester,
   remoteCarrier: roleRemoteCarrier,
   remoteBuilder: roleRemoteBuilder,
