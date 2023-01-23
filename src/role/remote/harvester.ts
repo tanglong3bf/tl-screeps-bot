@@ -25,7 +25,7 @@ export const roleRemoteHarvester = () => ({
     },
     target: (creep: Creep) => {
         const sources: Source[] = creep.room.find(FIND_SOURCES, {filter: (source: Source) => source.pos.isNearTo(creep) });
-        const containers = creep.room.getEnergyContainer().filter(container => container.pos.isEqualTo(creep));
+        const containers = creep.room.getSourceContainers().filter(container => container.pos.isEqualTo(creep));
         let container = containers.length > 0 ? containers[0] : null;
         if (container && container.hits < container.hitsMax && creep.store.getUsedCapacity() > 0) {
             creep.repair(container);

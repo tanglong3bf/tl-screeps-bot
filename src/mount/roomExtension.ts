@@ -31,12 +31,25 @@ export const roomExtension = {
   /**
    * 获取当前房间内所有存储能量的container
    */
-  getEnergyContainer: function (): StructureContainer[] {
+  getSourceContainers: function (): StructureContainer[] {
     const sources: Source[] = this.find(FIND_SOURCES);
     return this.find(FIND_STRUCTURES, {filter: (structure: Structure) => {
       if (structure.structureType != STRUCTURE_CONTAINER) return false;
       return sources.reduce((prev, current) => prev || current.pos.isNearTo(structure) , false);
     }})
+  },
+  /**
+   * 获取当前房间内指定能量矿的container
+   */
+  getSourceContainer: function (sourceId: Id<Source>): StructureContainer | undefined {
+    const containers: StructureContainer[] = this.find(FIND_STRUCTURES, {
+      filter: function (structure: AnyStructure) {
+        return structure.structureType == STRUCTURE_CONTAINER
+          && structure.pos.isNearTo(Game.getObjectById(sourceId));
+      }
+    });
+    if (containers.length > 0) return containers[0];
+    return undefined;
   },
   publishTransferTask: function() {
     // 是我自己的房间

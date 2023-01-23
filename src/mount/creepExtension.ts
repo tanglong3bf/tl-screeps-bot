@@ -121,7 +121,8 @@ export const creepExtension = {
 
     // ------------------------ 第二步：执行 creep 准备阶段 ------------------------
 
-    // console.log(this.memory.configName);
+    if (this.room.name == 'W32N3' && this.role == 'harvester1')
+    console.log(123);
 
     // 没准备的时候就执行准备阶段
     if (!this.memory.ready) {

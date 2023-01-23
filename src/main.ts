@@ -83,7 +83,7 @@ export const loop = errorMapper(() => {
         //攻击最近的敌人
         const closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if (closestHostile) {
-          if (closestHostile.owner.username != 'xianda1314') {
+          if (closestHostile.owner.username != 'xianda1314' && closestHostile.owner.username != 'PlanC') {
             tower.attack(closestHostile);
           }
         } else {

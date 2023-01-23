@@ -137,7 +137,11 @@ interface Room {
   /**
    * 获取当前房间内所有存储能量的container
    */
-  getEnergyContainer(): StructureContainer[]
+  getSourceContainers(): StructureContainer[]
+  /**
+   * 获取当前房间内指定能量矿的container
+   */
+  getSourceContainer(sourceId: Id<Source>): StructureContainer | undefined
 
   /**
    * 添加一个物流任务，每个房间都有自己的物流任务队列
