@@ -7,7 +7,14 @@ export const roleHarvester1 = (sourceId: Id<Source>) => ({
     if (container) {
       creep.moveTo(container);
     } else {
-      creep.moveTo(Game.getObjectById(sourceId));
+      const target = creep.room.find(FIND_CONSTRUCTION_SITES, {filter: {
+        structureType: STRUCTURE_CONTAINER
+      }});
+      if (target) {
+        creep.moveTo(target[0]);
+      } else {
+        creep.moveTo(Game.getObjectById(sourceId));
+      }
     }
   },
   isReady: (creep: Creep) => {
@@ -15,7 +22,14 @@ export const roleHarvester1 = (sourceId: Id<Source>) => ({
     if (container) {
       return creep.pos.isEqualTo(container);
     } else {
-      return creep.pos.isNearTo(Game.getObjectById(sourceId));
+      const target = creep.room.find(FIND_CONSTRUCTION_SITES, {filter: {
+        structureType: STRUCTURE_CONTAINER
+      }});
+      if (target) {
+        return creep.pos.isNearTo(target[0]);
+      } else {
+        return creep.pos.isNearTo(Game.getObjectById(sourceId));
+      }
     }
   },
   source: (creep: Creep) => {
