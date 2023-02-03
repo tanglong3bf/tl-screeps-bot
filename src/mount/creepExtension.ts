@@ -112,17 +112,10 @@ export const creepExtension = {
       this.say('找不到配置！')
       return 
     }
-    try {
     var creepLogic = roles[creepConfig.role](...creepConfig.args)
-    } catch (e) {
-      console.log(creepConfig.role);
-      console.log(creepConfig.args);
-    }
 
     // ------------------------ 第二步：执行 creep 准备阶段 ------------------------
 
-    if (this.room.name == 'W32N3' && this.role == 'harvester1')
-    console.log(123);
 
     // 没准备的时候就执行准备阶段
     if (!this.memory.ready) {
@@ -143,7 +136,19 @@ export const creepExtension = {
     // 有1t的延迟
 
     if (!this.memory.readyTime) {
-      this.memory.readyTime = 1500 - this.ticksToLive;
+      let isClaimer: boolean = false;
+      this.body.some(item => {
+        if (item.type == CLAIM) {
+          isClaimer = true;
+          return true;
+        }
+        return false;
+      });
+      if (isClaimer) {
+        this.memory.readyTime = 600 - this.ticksToLive;
+      } else {
+        this.memory.readyTime = 1500 - this.ticksToLive;
+      }
     }
 
     // ------------------------ 第三步：执行 creep 工作阶段 ------------------------

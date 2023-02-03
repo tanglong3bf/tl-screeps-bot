@@ -1,14 +1,11 @@
-export const roleRemoteBuilder = () => ({
+export const roleRemoteBuilder = (roomName: string) => ({
   prepare: (creep: Creep) => {
-    if (creep.room.name != 'W37N4') {
-      creep.moveTo(new RoomPosition(25, 25, 'W37N4'));
-    }
-    else {
-      creep.move(RIGHT);
+    if (creep.room.name != roomName) {
+      creep.moveTo(new RoomPosition(25, 25, roomName));
     }
   },
   isReady: (creep: Creep) => {
-      return creep.room.name == 'W37N4' && creep.pos.x > 0;
+    return creep.room.name == roomName;
   },
   source: (creep: Creep) => {
     const sources: Source[] = creep.room.find(FIND_SOURCES);

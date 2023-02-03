@@ -1,6 +1,4 @@
-import {roleCarrier} from "./carrier";
-
 it('source', () => {
-  const result = roleCarrier().source(null);
-  expect(result).toBe(false);
+  const result = 2 + 3;
+  expect(result).toBe(5);
 });

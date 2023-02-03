@@ -65,13 +65,9 @@ export const loop = errorMapper(() => {
     }
   }
 
-  // if (Game.rooms['W38N4'].terminal.store[RESOURCE_ZYNTHIUM] >= 1000) {
-  // Game.rooms['W38N4'].terminal.send(RESOURCE_ZYNTHIUM, 1000, 'W35N2');
-  // }
-
   // 所有的单房间Creep进行工作
   Object.values(Game.creeps)
-  .filter(creep => !creep.memory.isRemote)
+  // .filter(creep => !creep.memory.isRemote)
   .forEach(creep => creep.work());
 
   // 所有的Tower进行工作

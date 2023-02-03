@@ -1,29 +1,29 @@
 export const creepConfig = {
   /**
-   * 亲自挖，挖完修容器的采集爬，等到容器建好后，亲自修容器
+   * 在脚下建容器的采集爬，等到容器建好后，亲自修容器
    */
   harvester1: {
     role: 'harvester1',
     bodyList: [
       {
-        body: [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
-        energy: 1250
-      },
-      {
-        body: [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+        body: [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
         energy: 1000
       },
       {
-        body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
-        energy: 750
+        body: [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
+        energy: 800
       },
       {
-        body: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
-        energy: 500
+        body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+        energy: 600
       },
       {
-        body: [WORK, CARRY, MOVE, MOVE],
-        energy: 250
+        body: [WORK, WORK, CARRY, CARRY, MOVE, MOVE],
+        energy: 400
+      },
+      {
+        body: [WORK, CARRY, MOVE],
+        energy: 200
       }
     ]
   },
@@ -34,19 +34,23 @@ export const creepConfig = {
     role: 'harvester2',
     bodyList: [
       {
-        body: [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
-        energy: 850
+        body: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+        energy: 1600
       },
       {
-        body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+        body: [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
+        energy: 800
+      },
+      {
+        body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
         energy: 750
       },
       {
-        body: [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
+        body: [WORK, WORK, CARRY, CARRY, MOVE, MOVE],
         energy: 500
       },
       {
-        body: [WORK, CARRY, MOVE, MOVE],
+        body: [WORK, CARRY, MOVE],
         energy: 250
       }
     ]
@@ -263,8 +267,8 @@ export const creepConfig = {
     // configNAme: 'claimer',
     bodyList: [
       {
-        body: [CLAIM, MOVE],
-        energy: 650
+        body: [CLAIM, CLAIM, CLAIM, CLAIM, CLAIM, MOVE, MOVE, MOVE, MOVE, MOVE],
+        energy: 3250
       }
     ]
   },

@@ -1,5 +1,5 @@
 declare module NodeJS {
-    interface Global {
+    interface globalThis {
         Game: Game
         Memory: Memory
         _: _.LoDashStatic
